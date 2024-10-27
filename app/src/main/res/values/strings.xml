@@ -7,4 +7,5 @@
     <string name="noteTimestamp_hint">Дата создания</string>
     <string name="noteInput_hint">Введите заметку</string>
     <string name="addButton_text">Добавить</string>
+    <string name="saveButton_text">Сохранить изменения</string>
 </resources>
