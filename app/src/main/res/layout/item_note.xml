@@ -1,0 +1,51 @@
+<!-- res/layout/item_note.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/itemNote_height"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="@dimen/defPadding">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:padding="@dimen/defPadding">
+
+        <TextView
+            android:id="@+id/noteId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/noteId_hint" />
+
+        <TextView
+            android:id="@+id/noteText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/defMargin"
+            android:hint="@string/noteText_hint" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="@dimen/defPadding">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/noteTimestamp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/defMargin"
+            android:hint="@string/noteTimestamp_hint" />
+
+    </LinearLayout>
+
+</LinearLayout>

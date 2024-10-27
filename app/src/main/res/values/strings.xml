@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">14_1_Fragments</string>
+    <string name="exit">Выход</string>
+    <string name="toolbarTitle">Мои заметки</string>
+    <string name="noteId_hint">ID</string>
+    <string name="noteText_hint">Текст заметки</string>
+    <string name="noteTimestamp_hint">Дата создания</string>
+    <string name="noteInput_hint">Введите заметку</string>
+    <string name="addButton_text">Добавить</string>
+</resources>
