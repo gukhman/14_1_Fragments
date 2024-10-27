@@ -25,7 +25,7 @@ class NotesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_notes, container, false)
 
-        // Инициализация
+        // Инициализация элементов интерфейса
         noteInput = view.findViewById(R.id.noteInput)
         addButton = view.findViewById(R.id.addButton)
         recyclerView = view.findViewById(R.id.recyclerView)
@@ -36,14 +36,23 @@ class NotesFragment : Fragment() {
 
         // Настройка адаптера и RecyclerView
         noteAdapter = NoteAdapter(notes) { note ->
-            // Удаляем заметку при нажатии на нее
-            databaseHelper.deleteNote(note.id)
-            noteAdapter.removeNote(note)
+            // Переход на EditNoteFragment
+            val editNoteFragment = EditNoteFragment()
+            val bundle = Bundle()
+            bundle.putSerializable("note", note)
+            editNoteFragment.arguments = bundle
+
+            // Заменяем текущий фрагмент на EditNoteFragment
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, editNoteFragment)
+                .addToBackStack(null) // Добавляем в стек, чтобы можно было вернуться
+                .commit()
         }
         recyclerView.adapter = noteAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext()) // Добавляем LayoutManager для списка
 
-        // Добавление
+        // Обработчик кнопки добавления
         addButton.setOnClickListener {
             val text = noteInput.text.toString()
             if (text.isNotEmpty()) {
@@ -52,13 +61,12 @@ class NotesFragment : Fragment() {
                     text = text,
                     timestamp = System.currentTimeMillis()
                 )
-                databaseHelper.insertNote(note)
+                databaseHelper.insertNote(note) // Сохраняем заметку в базе данных
 
                 // Добавляем заметку в начало списка
-                noteAdapter.addNote(note)
-                // Прокручиваем к первой заметке
-                recyclerView.scrollToPosition(0)
-                noteInput.text.clear()
+                noteAdapter.addNote(note) // Используем метод для добавления заметки
+                recyclerView.scrollToPosition(0) // Прокручиваем к первой заметке
+                noteInput.text.clear() // Очищаем поле ввода
             }
         }
 

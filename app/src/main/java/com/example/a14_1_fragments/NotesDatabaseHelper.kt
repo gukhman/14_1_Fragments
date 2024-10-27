@@ -72,4 +72,15 @@ class NotesDatabaseHelper(context: Context) :
         db.delete(TABLE_NAME, "$COLUMN_ID = ?", arrayOf(noteId.toString()))
         db.close()
     }
+
+    fun updateNote(note: Note) {
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put("text", note.text)
+            put("timestamp", note.timestamp)
+        }
+        db.update("notes", contentValues, "id = ?", arrayOf(note.id.toString()))
+        db.close()
+    }
+
 }
